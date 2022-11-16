@@ -5,7 +5,7 @@
     <title>RBAC Site Admin</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body onload="getCss()">
 
 <button type="button" onclick="logout()">Logout</button>
 <h1>RBAC Site Admin Console</h1>
@@ -15,13 +15,34 @@
     <tr><td>Font Size:</td><td><input id="fontSize" type="text" placeholder="" /></td></tr>
     <tr><td>Heading Font Color:</td><td><input id="headingFontColor" type="text" placeholder="" /></td></tr>
     <tr><td>Heading Font Size:</td><td><input id="headingFontSize" type="text" placeholder="" /></td></tr>
-    <tr><td></td><td><button type="button" onclick="applyCss()">Apply</button></td></tr>
+    <tr><td></td><td>
+        <button type="button" onclick="applyCss()">Apply</button>
+        <button type="button" onclick="saveCss()">Save</button>
+    </td></tr>
 </table>
 
 </body>
 <script>
+    const getCss = ()=>{
+        const apiUrl = '/api/css';
+        fetch(apiUrl).then(response => {
+            return response.json();
+        }).then(data => {
+            document.getElementById('backgroundColor').value = data.backgroundColor;
+            document.getElementById('fontColor').value = data.fontColor;
+            document.getElementById('fontSize').value = data.fontSize;
+            document.getElementById('headingFontColor').value = data.headingFontColor;
+            document.getElementById('headingFontSize').value = data.headingFontSize;
+            console.log(data);
+        }).catch(err => {
+            // Do something for an error here
+        });
+    }
     const applyCss = ()=>{
         alert('I am applying CSS')
+    }
+    const saveCss = ()=>{
+        alert('I am saving CSS')
     }
     const logout = ()=>{
         alert('I am logging out')

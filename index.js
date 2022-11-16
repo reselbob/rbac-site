@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require("path");
 const {logger} = require("./logger");
+const {getCssAsJson} = require('./helpers/cssHelper')
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -54,13 +55,13 @@ app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname + fileSpec));
 });
 
-app.get('/api/css', (req, res) => {
-    const msg = `Getting CSS values`;
+app.get('/api/css', async (req, res) => {
+    const msg = await getCssAsJson();
     console.log(msg);
     res.status(200).send(msg);
 });
 
-app.post('/api/css', (req, res) => {
+app.post('/api/css', async(req, res) => {
     const msg = `Getting CSS values`;
     console.log(msg);
     res.status(200).send(msg);

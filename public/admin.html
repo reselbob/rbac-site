@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RBAC Site Admin</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<button type="button" onclick="logout()">Logout</button>
+<h1>RBAC Site Admin Console</h1>
+<table>
+    <tr><td>Background Color:</td><td><input id="backgroundColor" type="text" placeholder="" /></td></tr>
+    <tr><td>Font Color:</td><td><input id="fontColor" type="text" placeholder="" /></td></tr>
+    <tr><td>Font Size:</td><td><input id="fontSize" type="text" placeholder="" /></td></tr>
+    <tr><td>Heading Font Color:</td><td><input id="headingFontColor" type="text" placeholder="" /></td></tr>
+    <tr><td>Heading Font Size:</td><td><input id="headingFontSize" type="text" placeholder="" /></td></tr>
+    <tr><td></td><td><button type="button" onclick="applyCss()">Apply</button></td></tr>
+</table>
+
+</body>
+<script>
+    const applyCss = ()=>{
+        alert('I am applying CSS')
+    }
+    const logout = ()=>{
+        alert('I am logging out')
+    }
+</script>
+</html>

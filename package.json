@@ -1,0 +1,24 @@
+{
+  "name": "simple-site",
+  "version": "1.0.0",
+  "description": "This project is a demonstration of an Express application that publishes static web pages",
+  "main": "index.js",
+  "scripts": {
+    "start" : "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reselbob/simple-site.git"
+  },
+  "author": "Bob Reselman <reselbob@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reselbob/simple-site/issues"
+  },
+  "homepage": "https://github.com/reselbob/simple-site#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "winston": "^3.8.2"
+  }
+}

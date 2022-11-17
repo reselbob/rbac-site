@@ -10,10 +10,31 @@
 <button type="button" onclick="logout()">Logout</button>
 <h1>RBAC Site Admin Console</h1>
 <table>
-    <tr><td>Background Color:</td><td><input id="backgroundColor" type="text" placeholder="" /></td></tr>
-    <tr><td>Font Color:</td><td><input id="fontColor" type="text" placeholder="" /></td></tr>
+    <tr><td>Background Color:</td><td><select id="backgroundColor">
+        <option value="white">white</option>
+        <option value="black">black</option>
+        <option value="gray">gray</option>
+        <option value="red">red</option>
+        <option value="green">green</option>
+        <option value="blue">blue</option>
+    </select></td></tr>
+    <tr><td>Font Color:</td><td><select id="fontColor">
+        <option value="white">white</option>
+        <option value="black">black</option>
+        <option value="gray">gray</option>
+        <option value="red">red</option>
+        <option value="green">green</option>
+        <option value="blue">blue</option>
+    </select></td></tr>
     <tr><td>Font Size:</td><td><input id="fontSize" type="text" placeholder="" /></td></tr>
-    <tr><td>Heading Font Color:</td><td><input id="headingFontColor" type="text" placeholder="" /></td></tr>
+    <tr><td>Heading Font Color:</td><td><select id="headingFontColor">
+        <option value="white">white</option>
+        <option value="black">black</option>
+        <option value="gray">gray</option>
+        <option value="red">red</option>
+        <option value="green">green</option>
+        <option value="blue">blue</option>
+    </select></td></tr>
     <tr><td>Heading Font Size:</td><td><input id="headingFontSize" type="text" placeholder="" /></td></tr>
     <tr><td></td><td>
         <button type="button" onclick="applyCss()">Apply</button>
@@ -23,15 +44,24 @@
 
 </body>
 <script>
+    const setSelectValue = (elm, val) => {
+        for (let i = 0; i < elm.options.length; i++) {
+            if(elm.options[i].innerText === val){
+                elm.options[i].selected=true;
+                return
+            }
+        }
+    };
+
     const getCss = ()=>{
         const apiUrl = '/api/css';
         fetch(apiUrl).then(response => {
             return response.json();
         }).then(data => {
-            document.getElementById('backgroundColor').value = data.backgroundColor;
-            document.getElementById('fontColor').value = data.fontColor;
+            setSelectValue(document.getElementById('backgroundColor'),data.backgroundColor );
+            setSelectValue(document.getElementById('fontColor'),data.fontColor );
             document.getElementById('fontSize').value = data.fontSize;
-            document.getElementById('headingFontColor').value = data.headingFontColor;
+            setSelectValue(document.getElementById('headingFontColor'),data.headingFontColor );
             document.getElementById('headingFontSize').value = data.headingFontSize;
             console.log(data);
         }).catch(err => {

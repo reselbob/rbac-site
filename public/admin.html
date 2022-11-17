@@ -5,37 +5,16 @@
     <title>RBAC Site Admin</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body onload="getCss()">
+<body onload="onLoad()">
 
 <button type="button" onclick="logout()">Logout</button>
 <h1>RBAC Site Admin Console</h1>
 <table>
-    <tr><td>Background Color:</td><td><select id="backgroundColor">
-        <option value="white">white</option>
-        <option value="black">black</option>
-        <option value="gray">gray</option>
-        <option value="red">red</option>
-        <option value="green">green</option>
-        <option value="blue">blue</option>
-    </select></td></tr>
-    <tr><td>Font Color:</td><td><select id="fontColor">
-        <option value="white">white</option>
-        <option value="black">black</option>
-        <option value="gray">gray</option>
-        <option value="red">red</option>
-        <option value="green">green</option>
-        <option value="blue">blue</option>
-    </select></td></tr>
-    <tr><td>Font Size:</td><td><input id="fontSize" type="text" placeholder="" /></td></tr>
-    <tr><td>Heading Font Color:</td><td><select id="headingFontColor">
-        <option value="white">white</option>
-        <option value="black">black</option>
-        <option value="gray">gray</option>
-        <option value="red">red</option>
-        <option value="green">green</option>
-        <option value="blue">blue</option>
-    </select></td></tr>
-    <tr><td>Heading Font Size:</td><td><input id="headingFontSize" type="text" placeholder="" /></td></tr>
+    <tr><td>Background Color:</td><td><select id="backgroundColor" /></td></tr>
+    <tr><td>Font Color:</td><td><select id="fontColor" /></td></tr>
+    <tr><td>Font Size:</td><td><select id="fontSize" /></td></tr>
+    <tr><td>Heading Font Color:</td><td><select id="headingFontColor" /></td></tr>
+    <tr><td>Heading Font Size:</td><td><select id="headingFontSize" /></td></td></tr>
     <tr><td></td><td>
         <button type="button" onclick="applyCss()">Apply</button>
         <button type="button" onclick="saveCss()">Save</button>
@@ -44,6 +23,85 @@
 
 </body>
 <script>
+    const fontSizes = {}
+    fontSizes['x-small'] = 6;
+    fontSizes['small'] = 12;
+    fontSizes['normal'] = 16;
+    fontSizes['large'] = 40;
+    fontSizes['x-large'] = 64;
+
+    const applyFontSizeLabel = (select, fontSizeValue) => {
+        const sizeVal = parseInt(fontSizeValue.replace('px',''));
+        let sizeText = 'normal';
+        for (let prop in fontSizes) {
+            if( fontSizes[prop] === sizeVal){
+                sizeText = prop;
+                break;
+            };
+        }
+        setSelectValue(select, sizeText);
+    }
+
+    const extractFontSize = (select) => {
+        const val = getSelectValue(select);
+        return fontSizes[val].toString(10) + 'px';
+    }
+    const onLoad = () =>{
+        populateDropDownWithFontSizeOptions(document.getElementById('fontSize'));
+        populateDropDownWithFontSizeOptions(document.getElementById('headingFontSize'));
+        populateDropDownWithFontColorOptions(document.getElementById('backgroundColor'));
+        populateDropDownWithFontColorOptions(document.getElementById('fontColor'));
+        populateDropDownWithFontColorOptions(document.getElementById('headingFontColor'));
+
+        getCss();
+    }
+
+    const populateDropDownWithFontColorOptions = (select)=> {
+        let option = document.createElement('option');
+        option.text = option.value = 'white';
+        select.add(option, 0);
+
+        option = document.createElement('option');
+        option.text = option.value = 'black';
+        select.add(option, 1);
+
+        option = document.createElement('option');
+        option.text = option.value = 'gray';
+        select.add(option, 2);
+
+        option = document.createElement('option');
+        option.text = option.value = 'red';
+        select.add(option, 3);
+
+        option = document.createElement('option');
+        option.text = option.value = 'green';
+        select.add(option, 4);
+
+        option = document.createElement('option');
+        option.text = option.value = 'blue';
+        select.add(option, 5);
+    }
+    const populateDropDownWithFontSizeOptions = (select)=> {
+        let option = document.createElement('option');
+        option.text = option.value = 'x-small';
+        select.add(option, 0);
+
+        option = document.createElement('option');
+        option.text = option.value = 'small';
+        select.add(option, 1);
+
+        option = document.createElement('option');
+        option.text = option.value = 'normal';
+        select.add(option, 2);
+
+        option = document.createElement('option');
+        option.text = option.value = 'large';
+        select.add(option, 3);
+
+        option = document.createElement('option');
+        option.text = option.value = 'x-large';
+        select.add(option, 4);
+    }
     const setSelectValue = (elm, val) => {
         for (let i = 0; i < elm.options.length; i++) {
             if(elm.options[i].innerText === val){
@@ -60,16 +118,34 @@
         }).then(data => {
             setSelectValue(document.getElementById('backgroundColor'),data.backgroundColor );
             setSelectValue(document.getElementById('fontColor'),data.fontColor );
-            document.getElementById('fontSize').value = data.fontSize;
+            applyFontSizeLabel(document.getElementById('fontSize'),  data.fontSize);
             setSelectValue(document.getElementById('headingFontColor'),data.headingFontColor );
-            document.getElementById('headingFontSize').value = data.headingFontSize;
+            applyFontSizeLabel(document.getElementById('headingFontSize'),  data.headingFontSize);
             console.log(data);
         }).catch(err => {
             // Do something for an error here
         });
     }
-    const applyCss = ()=>{
-        alert('I am applying CSS')
+
+    const getSelectValue = (select) => {
+        return  select.options[select.selectedIndex].value;
+    }
+    const applyCss = ()=> {
+        const fontSize = extractFontSize(document.getElementById('fontSize'));
+        const headingFontSize = extractFontSize(document.getElementById('headingFontSize'));
+        const backgroundColor = getSelectValue(document.getElementById('backgroundColor'));
+        const fontColor = getSelectValue(document.getElementById('fontColor'));
+        const headingFontColor = getSelectValue(document.getElementById('headingFontColor'));
+
+        const body = document.querySelector("body");
+        const h1 = document.querySelector("h1");
+
+        body.style.backgroundColor = backgroundColor;
+        body.style.fontSize = fontSize;
+        body.style.color = fontColor
+
+        h1.style.fontSize = headingFontSize;
+        h1.style.color = headingFontColor;
     }
     const saveCss = ()=>{
         alert('I am saving CSS')

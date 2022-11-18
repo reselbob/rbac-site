@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require("path");
 const {logger} = require("./logger");
-const {getCssAsJson} = require('./helpers/cssHelper')
+const {getCssAsJson, applyJsonToCss} = require('./helpers/cssHelper')
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -62,9 +62,27 @@ app.get('/api/css', async (req, res) => {
 });
 
 app.post('/api/css', async(req, res) => {
-    const msg = `Getting CSS values`;
-    console.log(msg);
-    res.status(200).send(msg);
+    const data = req.body;
+    logger.info(`Posting ${JSON.stringify(data)}`);
+
+    try {
+        await applyJsonToCss(data)
+    } catch (e) {
+        res.status(500).send({status: 500, message: e.message});
+        return;
+    }
+    res.status(200).send({status: 200, message: 'OK'});
+});
+
+app.post('/api/login', async(req, res) => {
+    const data = req.body;
+    logger.info(`Posting ${JSON.stringify(data)}`);
+    if((data.username && data.username .toLowerCase() === 'admin') && (data.password && data.password .toLowerCase() === 'cheese')){
+        logger.info(`Posting ${data.username} logged in! `);
+        res.status(200).send({status: 200, message: 'OK'});
+        return;
+    }
+    res.status(500).send({status: 500, message: 'Not Implemented'});
 });
 
 server = app.listen(port, () => {

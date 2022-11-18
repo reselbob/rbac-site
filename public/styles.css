@@ -1,10 +1,9 @@
 body {
-    background-color: white;
-    color: red;
-    font-size: 20px;
+	background-color: undefined;
+	color: undefined;
+	font-size: undefined;
 }
-
 h1 {
-    color: blue;
-    font-size: 40px;
+	color: undefined;
+	font-size: undefined;
 }

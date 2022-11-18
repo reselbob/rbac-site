@@ -6,22 +6,53 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body onload="onLoad()">
-
-<button type="button" onclick="logout()">Logout</button>
-<h1>RBAC Site Admin Console</h1>
-<table>
-    <tr><td>Background Color:</td><td><select id="backgroundColor" /></td></tr>
-    <tr><td>Font Color:</td><td><select id="fontColor" /></td></tr>
-    <tr><td>Font Size:</td><td><select id="fontSize" /></td></tr>
-    <tr><td>Heading Font Color:</td><td><select id="headingFontColor" /></td></tr>
-    <tr><td>Heading Font Size:</td><td><select id="headingFontSize" /></td></td></tr>
-    <tr><td></td><td>
-        <button type="button" onclick="applyCss()">Apply</button>
-        <button type="button" onclick="saveCss()">Save</button>
-    </td></tr>
-</table>
-
+<div id="loginArea">
+    <input id="username" type="text" placeholder="Username"/>
+    <input id="password" type="text" placeholder="Password"/>
+    <button type="button" onclick="login()">Login</button>
+    <div id="welcomeMessage"></div>
+</div>
+<div id="contentArea" style = "visibility:hidden">
+    <button type="button" onclick="logout()">Logout</button>
+    <h1>RBAC Site Admin Console</h1>
+    <table>
+        <tr>
+            <td>Background Color:</td>
+            <td><select id="backgroundColor"/></td>
+        </tr>
+        <tr>
+            <td>Font Color:</td>
+            <td><select id="fontColor"/></td>
+        </tr>
+        <tr>
+            <td>Font Size:</td>
+            <td><select id="fontSize"/></td>
+        </tr>
+        <tr>
+            <td>Heading Font Color:</td>
+            <td><select id="headingFontColor"/></td>
+        </tr>
+        <tr>
+            <td>Heading Font Size:</td>
+            <td><select id="headingFontSize"/></td>
+            </td></tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="button" onclick="applyCss()">Apply</button>
+                <button type="button" onclick="saveCss()">Save</button>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div id="saveResponse"></div>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     const fontSizes = {}
     fontSizes['x-small'] = 6;
@@ -31,13 +62,14 @@
     fontSizes['x-large'] = 64;
 
     const applyFontSizeLabel = (select, fontSizeValue) => {
-        const sizeVal = parseInt(fontSizeValue.replace('px',''));
+        const sizeVal = parseInt(fontSizeValue.replace('px', ''));
         let sizeText = 'normal';
         for (let prop in fontSizes) {
-            if( fontSizes[prop] === sizeVal){
+            if (fontSizes[prop] === sizeVal) {
                 sizeText = prop;
                 break;
-            };
+            }
+            ;
         }
         setSelectValue(select, sizeText);
     }
@@ -46,7 +78,7 @@
         const val = getSelectValue(select);
         return fontSizes[val].toString(10) + 'px';
     }
-    const onLoad = () =>{
+    const onLoad = () => {
         populateDropDownWithFontSizeOptions(document.getElementById('fontSize'));
         populateDropDownWithFontSizeOptions(document.getElementById('headingFontSize'));
         populateDropDownWithFontColorOptions(document.getElementById('backgroundColor'));
@@ -56,7 +88,7 @@
         getCss();
     }
 
-    const populateDropDownWithFontColorOptions = (select)=> {
+    const populateDropDownWithFontColorOptions = (select) => {
         let option = document.createElement('option');
         option.text = option.value = 'white';
         select.add(option, 0);
@@ -81,7 +113,7 @@
         option.text = option.value = 'blue';
         select.add(option, 5);
     }
-    const populateDropDownWithFontSizeOptions = (select)=> {
+    const populateDropDownWithFontSizeOptions = (select) => {
         let option = document.createElement('option');
         option.text = option.value = 'x-small';
         select.add(option, 0);
@@ -104,23 +136,23 @@
     }
     const setSelectValue = (elm, val) => {
         for (let i = 0; i < elm.options.length; i++) {
-            if(elm.options[i].innerText === val){
-                elm.options[i].selected=true;
+            if (elm.options[i].innerText === val) {
+                elm.options[i].selected = true;
                 return
             }
         }
     };
 
-    const getCss = ()=>{
+    const getCss = () => {
         const apiUrl = '/api/css';
         fetch(apiUrl).then(response => {
             return response.json();
         }).then(data => {
-            setSelectValue(document.getElementById('backgroundColor'),data.backgroundColor );
-            setSelectValue(document.getElementById('fontColor'),data.fontColor );
-            applyFontSizeLabel(document.getElementById('fontSize'),  data.fontSize);
-            setSelectValue(document.getElementById('headingFontColor'),data.headingFontColor );
-            applyFontSizeLabel(document.getElementById('headingFontSize'),  data.headingFontSize);
+            setSelectValue(document.getElementById('backgroundColor'), data.backgroundColor);
+            setSelectValue(document.getElementById('fontColor'), data.fontColor);
+            applyFontSizeLabel(document.getElementById('fontSize'), data.fontSize);
+            setSelectValue(document.getElementById('headingFontColor'), data.headingFontColor);
+            applyFontSizeLabel(document.getElementById('headingFontSize'), data.headingFontSize);
             console.log(data);
         }).catch(err => {
             // Do something for an error here
@@ -128,9 +160,9 @@
     }
 
     const getSelectValue = (select) => {
-        return  select.options[select.selectedIndex].value;
+        return select.options[select.selectedIndex].value;
     }
-    const applyCss = ()=> {
+    const applyCss = () => {
         const fontSize = extractFontSize(document.getElementById('fontSize'));
         const headingFontSize = extractFontSize(document.getElementById('headingFontSize'));
         const backgroundColor = getSelectValue(document.getElementById('backgroundColor'));
@@ -147,11 +179,81 @@
         h1.style.fontSize = headingFontSize;
         h1.style.color = headingFontColor;
     }
-    const saveCss = ()=>{
-        alert('I am saving CSS')
+    const saveCss = () => {
+        // apply against, just in case there was now apply previousl
+        applyCss()
+
+        //collect this settings
+        const backgroundColor = getSelectValue(document.getElementById('backgroundColor'));
+        const fontSize = extractFontSize(document.getElementById('fontSize'));
+        const fontColor = getSelectValue(document.getElementById('fontColor'));
+        const headingFontSize = extractFontSize(document.getElementById('headingFontSize'));
+        const headingFontColor = getSelectValue(document.getElementById('headingFontColor'));
+
+        //create the JSON object for submission
+        const data = {
+            backgroundColor,
+            fontSize,
+            fontColor,
+            headingFontSize,
+            headingFontColor
+        }
+
+        //do the POST
+        const settings = {
+            "url": "/api/css",
+            "method": "POST",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify(data),
+        };
+        console.log(`Sending CSS data to Server: ${JSON.stringify(data)}`)
+        $.ajax({
+            ...settings,
+            success: function (result) {
+                document.getElementById('saveResponse').innerText = `CSS settings have been saved!`
+            },
+            error: function () {
+                document.getElementById('saveResponse').innerText = `Save did not happen.`
+            }
+        });
     }
-    const logout = ()=>{
-        alert('I am logging out')
+    const logout = () => {
+        document.getElementById('welcomeMessage').innerText = "";
+        document.getElementById('contentArea').style.visibility="hidden";
+        document.getElementById('loginArea').style.visibility="visible"
+        document.getElementById('username').value="";
+        document.getElementById('password').value="";
+    };
+
+    const login = ()=>{
+        // get username and pwd
+        const username=document.getElementById('username').value;
+        const password=document.getElementById('password').value;
+        //do the POST
+        const data = {username,password}
+        const settings = {
+            "url": "/api/css",
+            "method": "POST",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify(data),
+        };
+        console.log(`Sending login data to Server: ${JSON.stringify(data)}`)
+        $.ajax({
+            ...settings,
+            success: function (result) {
+                document.getElementById('welcomeMessage').innerText = `Welcome ${username}! Be careful with the power you wield.`
+                document.getElementById('contentArea').style.visibility="visible";
+                document.getElementById('loginArea').style.visibility="hidden"
+            },
+            error: function () {
+                document.getElementById('welcomeMessage').innerText = `Login did not happen.`
+            }
+        });
     }
+
 </script>
 </html>

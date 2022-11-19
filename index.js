@@ -88,3 +88,9 @@ app.post('/api/login', async(req, res) => {
 server = app.listen(port, () => {
     logger.info(`Node server is running on port ${port} at ${new Date()}`);
 });
+
+const shutdown = () => {
+    server.close()
+}
+
+module.exports = {server, shutdown};

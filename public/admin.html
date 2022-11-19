@@ -9,11 +9,11 @@
 <div id="loginArea">
     <input id="username" type="text" placeholder="Username"/>
     <input id="password" type="text" placeholder="Password"/>
-    <button type="button" onclick="login()">Login</button>
+    <button type="button" id="loginButton" onclick="login()">Login</button>
     <div id="welcomeMessage"></div>
 </div>
 <div id="contentArea" style = "visibility:hidden">
-    <button type="button" onclick="logout()">Logout</button>
+    <button type="button" onclick="logout()" id="logoutButton">Logout</button>
     <h1>RBAC Site Admin Console</h1>
     <table>
         <tr>
@@ -60,6 +60,21 @@
     fontSizes['normal'] = 16;
     fontSizes['large'] = 40;
     fontSizes['x-large'] = 64;
+
+    setLoginButtons = (isLoggedIn) => {
+        if(isLoggedIn){
+            document.getElementById('contentArea').style.visibility="visible";
+            document.getElementById('contentArea').style.display= "initial"
+            document.getElementById('loginArea').style.visibility="hidden"
+            document.getElementById('loginArea').style.display="none"
+        }else{
+            document.getElementById('contentArea').style.visibility="hidden";
+            document.getElementById('contentArea').style.display= "none"
+            document.getElementById('loginArea').style.visibility="visible"
+            document.getElementById('loginArea').style.display="initial"
+        }
+
+    }
 
     const applyFontSizeLabel = (select, fontSizeValue) => {
         const sizeVal = parseInt(fontSizeValue.replace('px', ''));
@@ -220,9 +235,7 @@
         });
     }
     const logout = () => {
-        document.getElementById('welcomeMessage').innerText = "";
-        document.getElementById('contentArea').style.visibility="hidden";
-        document.getElementById('loginArea').style.visibility="visible"
+        setLoginButtons(false)
         document.getElementById('username').value="";
         document.getElementById('password').value="";
     };
@@ -234,7 +247,7 @@
         //do the POST
         const data = {username,password}
         const settings = {
-            "url": "/api/css",
+            "url": "/api/login",
             "method": "POST",
             "headers": {
                 "Content-Type": "application/json"
@@ -245,9 +258,8 @@
         $.ajax({
             ...settings,
             success: function (result) {
-                document.getElementById('welcomeMessage').innerText = `Welcome ${username}! Be careful with the power you wield.`
-                document.getElementById('contentArea').style.visibility="visible";
-                document.getElementById('loginArea').style.visibility="hidden"
+                document.getElementById('welcomeMessage').innerText = ``
+                setLoginButtons(true)
             },
             error: function () {
                 document.getElementById('welcomeMessage').innerText = `Login did not happen.`

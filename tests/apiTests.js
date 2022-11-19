@@ -7,7 +7,7 @@ const it = require('mocha').it;
 const {server,shutdown} = require('../index');
 
 describe('API Tests: ', () => {
-    after(function () {
+    after( () => {
         shutdown();
     });
     it('Can access GET item /api/css', function(done){

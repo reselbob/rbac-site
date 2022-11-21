@@ -1,5 +1,5 @@
 .idea
-.nohup.out
+nohup.out
 # Logs
 logs
 *.log

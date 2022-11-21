@@ -4,6 +4,8 @@ const path = require("path");
 const {logger} = require("./logger");
 const {getCssAsJson, applyJsonToCss} = require('./helpers/cssHelper')
 
+process.title = 'simple_admin'
+
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 /**

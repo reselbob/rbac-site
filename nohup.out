@@ -1,0 +1,111 @@
+
+> simple-ui-site@1.0.0 start
+> node index.js
+
+2022-11-21T18:06:32.628Z  info: Node server is running on port 8080 at Mon Nov 21 2022 10:06:32 GMT-0800 (Pacific Standard Time)
+
+> simple-ui-site@1.0.0 start
+> node index.js
+
+2022-11-21T18:10:39.365Z  info: Node server is running on port 8080 at Mon Nov 21 2022 10:10:39 GMT-0800 (Pacific Standard Time)
+
+> simple-ui-site@1.0.0 start
+> node index.js
+
+node:events:491
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::8080
+    at Server.setupListenHandle [as _listen2] (node:net:1432:16)
+    at listenInCluster (node:net:1480:12)
+    at Server.listen (node:net:1568:7)
+    at Function.listen (/Users/reselbob/Projects/rbac-site/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/reselbob/Projects/rbac-site/index.js:90:14)
+    at Module._compile (node:internal/modules/cjs/loader:1126:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)
+    at Module.load (node:internal/modules/cjs/loader:1004:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:839:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1459:8)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 8080
+}
+/var/folders/ln/2cjsttsj4_qdflpjm30m_5sc0000gn/T/start-d9306018.sh: line 1:  1677 Terminated: 15          node index.js
+
+> simple-ui-site@1.0.0 start
+> node index.js
+
+node:events:491
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::8080
+    at Server.setupListenHandle [as _listen2] (node:net:1432:16)
+    at listenInCluster (node:net:1480:12)
+    at Server.listen (node:net:1568:7)
+    at Function.listen (/Users/reselbob/Projects/rbac-site/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/reselbob/Projects/rbac-site/index.js:90:14)
+    at Module._compile (node:internal/modules/cjs/loader:1126:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)
+    at Module.load (node:internal/modules/cjs/loader:1004:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:839:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1459:8)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 8080
+}
+
+> simple-ui-site@1.0.0 start
+> node index.js
+
+2022-11-21T18:12:35.077Z  info: Node server is running on port 8080 at Mon Nov 21 2022 10:12:35 GMT-0800 (Pacific Standard Time)
+2022-11-21T18:12:36.323Z  info: {"requestInfo":{"Host":"localhost:8080","Connection":"keep-alive","sec-ch-ua":"\"Google Chrome\";v=\"107\", \"Chromium\";v=\"107\", \"Not=A?Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"macOS\"","Upgrade-Insecure-Requests":"1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36","Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9","Sec-Fetch-Site":"none","Sec-Fetch-Mode":"navigate","Sec-Fetch-User":"?1","Sec-Fetch-Dest":"document","Accept-Encoding":"gzip, deflate, br","Accept-Language":"en-US,en;q=0.9"}}
+2022-11-21T18:12:36.340Z  info: Getting admin file /public/admin.html
+2022-11-21T18:12:36.369Z  info: {"requestInfo":{"Host":"localhost:8080","Connection":"keep-alive","sec-ch-ua":"\"Google Chrome\";v=\"107\", \"Chromium\";v=\"107\", \"Not=A?Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36","sec-ch-ua-platform":"\"macOS\"","Accept":"text/css,*/*;q=0.1","Sec-Fetch-Site":"same-origin","Sec-Fetch-Mode":"no-cors","Sec-Fetch-Dest":"style","Referer":"http://localhost:8080/admin","Accept-Encoding":"gzip, deflate, br","Accept-Language":"en-US,en;q=0.9"}}
+2022-11-21T18:12:36.513Z  info: {"requestInfo":{"Host":"localhost:8080","Connection":"keep-alive","sec-ch-ua":"\"Google Chrome\";v=\"107\", \"Chromium\";v=\"107\", \"Not=A?Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36","sec-ch-ua-platform":"\"macOS\"","Accept":"*/*","Sec-Fetch-Site":"same-origin","Sec-Fetch-Mode":"cors","Sec-Fetch-Dest":"empty","Referer":"http://localhost:8080/admin","Accept-Encoding":"gzip, deflate, br","Accept-Language":"en-US,en;q=0.9"}}
+2022-11-21T18:12:36.514Z  info: Getting the css file /public/styles.css
+{
+  backgroundColor: 'white',
+  fontColor: 'red',
+  fontSize: '16px',
+  headingFontColor: 'blue',
+  headingFontSize: '40px'
+}
+2022-11-21T18:12:36.519Z  info: {"requestInfo":{"Host":"localhost:8080","Connection":"keep-alive","sec-ch-ua":"\"Google Chrome\";v=\"107\", \"Chromium\";v=\"107\", \"Not=A?Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36","sec-ch-ua-platform":"\"macOS\"","Accept":"image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8","Sec-Fetch-Site":"same-origin","Sec-Fetch-Mode":"no-cors","Sec-Fetch-Dest":"image","Referer":"http://localhost:8080/admin","Accept-Encoding":"gzip, deflate, br","Accept-Language":"en-US,en;q=0.9"}}
+2022-11-21T18:12:36.619Z  info: {"requestInfo":{"Host":"localhost:8080","Connection":"keep-alive","Content-Length":"40","sec-ch-ua":"\"Google Chrome\";v=\"107\", \"Chromium\";v=\"107\", \"Not=A?Brand\";v=\"24\"","Accept":"*/*","Content-Type":"application/json","X-Requested-With":"XMLHttpRequest","sec-ch-ua-mobile":"?0","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36","sec-ch-ua-platform":"\"macOS\"","Origin":"http://localhost:8080","Sec-Fetch-Site":"same-origin","Sec-Fetch-Mode":"cors","Sec-Fetch-Dest":"empty","Referer":"http://localhost:8080/admin","Accept-Encoding":"gzip, deflate, br","Accept-Language":"en-US,en;q=0.9"}}
+2022-11-21T18:12:36.619Z  info: Posting {"username":"admin","password":"cheese"}
+2022-11-21T18:12:36.619Z  info: Posting admin logged in! 
+/var/folders/ln/2cjsttsj4_qdflpjm30m_5sc0000gn/T/start-e4addbaf.sh: line 1:  1780 Terminated: 15          node index.js
+
+> simple-ui-site@1.0.0 start
+> node index.js
+
+2022-11-21T18:20:11.843Z  info: Node server is running on port 8080 at Mon Nov 21 2022 10:20:11 GMT-0800 (Pacific Standard Time)
+2022-11-21T18:20:13.423Z  info: {"requestInfo":{"Host":"localhost:8080","Connection":"keep-alive","sec-ch-ua":"\"Google Chrome\";v=\"107\", \"Chromium\";v=\"107\", \"Not=A?Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","sec-ch-ua-platform":"\"macOS\"","Upgrade-Insecure-Requests":"1","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36","Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9","Sec-Fetch-Site":"none","Sec-Fetch-Mode":"navigate","Sec-Fetch-User":"?1","Sec-Fetch-Dest":"document","Accept-Encoding":"gzip, deflate, br","Accept-Language":"en-US,en;q=0.9"}}
+2022-11-21T18:20:13.441Z  info: Getting admin file /public/admin.html
+2022-11-21T18:20:13.457Z  info: {"requestInfo":{"Host":"localhost:8080","Connection":"keep-alive","sec-ch-ua":"\"Google Chrome\";v=\"107\", \"Chromium\";v=\"107\", \"Not=A?Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36","sec-ch-ua-platform":"\"macOS\"","Accept":"text/css,*/*;q=0.1","Sec-Fetch-Site":"same-origin","Sec-Fetch-Mode":"no-cors","Sec-Fetch-Dest":"style","Referer":"http://localhost:8080/admin","Accept-Encoding":"gzip, deflate, br","Accept-Language":"en-US,en;q=0.9"}}
+2022-11-21T18:20:13.772Z  info: {"requestInfo":{"Host":"localhost:8080","Connection":"keep-alive","sec-ch-ua":"\"Google Chrome\";v=\"107\", \"Chromium\";v=\"107\", \"Not=A?Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36","sec-ch-ua-platform":"\"macOS\"","Accept":"*/*","Sec-Fetch-Site":"same-origin","Sec-Fetch-Mode":"cors","Sec-Fetch-Dest":"empty","Referer":"http://localhost:8080/admin","Accept-Encoding":"gzip, deflate, br","Accept-Language":"en-US,en;q=0.9"}}
+2022-11-21T18:20:13.773Z  info: Getting the css file /public/styles.css
+{
+  backgroundColor: 'white',
+  fontColor: 'red',
+  fontSize: '16px',
+  headingFontColor: 'blue',
+  headingFontSize: '40px'
+}
+2022-11-21T18:20:13.779Z  info: {"requestInfo":{"Host":"localhost:8080","Connection":"keep-alive","sec-ch-ua":"\"Google Chrome\";v=\"107\", \"Chromium\";v=\"107\", \"Not=A?Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36","sec-ch-ua-platform":"\"macOS\"","Accept":"image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8","Sec-Fetch-Site":"same-origin","Sec-Fetch-Mode":"no-cors","Sec-Fetch-Dest":"image","Referer":"http://localhost:8080/admin","Accept-Encoding":"gzip, deflate, br","Accept-Language":"en-US,en;q=0.9"}}
+2022-11-21T18:20:13.890Z  info: {"requestInfo":{"Host":"localhost:8080","Connection":"keep-alive","Content-Length":"40","sec-ch-ua":"\"Google Chrome\";v=\"107\", \"Chromium\";v=\"107\", \"Not=A?Brand\";v=\"24\"","Accept":"*/*","Content-Type":"application/json","X-Requested-With":"XMLHttpRequest","sec-ch-ua-mobile":"?0","User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36","sec-ch-ua-platform":"\"macOS\"","Origin":"http://localhost:8080","Sec-Fetch-Site":"same-origin","Sec-Fetch-Mode":"cors","Sec-Fetch-Dest":"empty","Referer":"http://localhost:8080/admin","Accept-Encoding":"gzip, deflate, br","Accept-Language":"en-US,en;q=0.9"}}
+2022-11-21T18:20:13.890Z  info: Posting {"username":"admin","password":"cheese"}
+2022-11-21T18:20:13.890Z  info: Posting admin logged in! 
+/var/folders/ln/2cjsttsj4_qdflpjm30m_5sc0000gn/T/start-c644865c.sh: line 1:  1901 Terminated: 15          node index.js

@@ -1,5 +1,5 @@
 {
-  "name": "simple-ui-site",
+  "name": "simple-admin-site",
   "version": "1.0.0",
   "description": "This project is a demonstration of an Express application that publishes static a web page along with on the has an admin page for UI configuration.",
   "main": "index.js",
